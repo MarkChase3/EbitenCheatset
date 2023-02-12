@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css" integrity="sha512-3gFq2IXMVlAQaUyahzhjDRivv0yqyXTb7xiy6ivTaG5Uz4hKI54uYxpQefdomgDVQ11eJVUbXG0YdPMDISiGgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<table>
+<tr>
+<td>
+<h3> Ebiten <h1>
+<h5> Template</h2>
+<code>
+	package game <br>
+<br>
+	import (<br>
+		"github.com/hajimehoshi/ebiten/v2"<br>
+		"github.com/hajimehoshi/ebiten/v2/ebitenutil"<br>
+	)<br>
+<br>
+	type Game struct{}<br>
+<br>
+	func (g *Game) Update() error {<br>
+		utils.Update()<br>
+		return nil<br>
+	}<br>
+<br>
+	func (g \*Game) Draw(screen \*ebiten.Image) {<br>
+		ebitenutil.DebugPrint(screen, "Hello, World!")<br>
+		utils.Draw(screen)<br>
+	}<br>
+<br>
+	func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {<br>
+		return 90, 160<br>
+	}<br>
+<br>
+	func main(){<br>
+		ebiten.SetWindowSize(360, 640)<br>
+		ebiten.SetWindowTitle("Hello, World!")<br>
+		if err := ebiten.RunGame(Game{}); err != nil {<br>
+			log.Fatal(err)<br>
+		}<br>
+	}<br>
+</code>
+</td>
+<td>
+<h5> Load Image</h5>
+<code>
+	var spr = ebitenutil.NewImageFromFile('path')<br>
+</code>
+<br><br>
+<h5> Draw Image</h5>
+<br>
+<code>
+	screen.DrawImage(spr, nil)<br>
+</code>
+<br><br>
+<h5> Draw Image On X,Y</h5>
+<code>
+	var op ebiten.DrawImageOptions{}<br>
+	op.Translate(x, y)<br>
+	screen.DrawImage(spr, x, y)<br>
+</code>
+<br><br>
+<h5> Check Key Down</h5>
+<code>
+	if ebiten.IsKeyPressed(ebiten.Key{KeyName})
+</code>
+<br><br>
+<h5> Check Key Press</h5>
+<code>
+	if inputuil.IsKeyJustPressed(ebiten.Key{KeyName})
+</code>
+</td>
+<td>
+
+<h5>Tileset management</h5>
+<code>
+	spr := ebiten.NewImageFromImage(img.SubImage(image.Rectangle{image.Point{x,y}, image..Point{x+w,y+h}}))
+</code>
+<br><br>
+<h5>Init font</h5>
+<code>
+	fnt, _ := ioutil.ReadFile("path/to/font.ttf")<br>
+	tt, err := sfnt.Parse(fnt)<br>
+	if err != nil {<br>
+		log.Fatal(err)<br>
+	}<br>
+	const dpi = ...<br>
+	pixelart, err = opentype.NewFace(tt, &opentype.FaceOptions{<br>
+		Size:    ...,<br>
+		DPI:     dpi,<br>
+		Hinting: font.HintingVertical,<br>
+	})<br>
+	if err != nil {<br>
+		log.Fatal(err)<br>
+	}<br>
+</code>
+<br><br>
+<h5>Draw text</h5>
+<code>
+	text.Draw(screen, text, pixelart, x, y, color.{some color})
+</code>
+</td>
+</tr>
+<tr>
+
+</tr>
+</table>
